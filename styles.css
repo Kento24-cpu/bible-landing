@@ -81,19 +81,18 @@ a:focus-visible {
 }
 
 .hero-shell {
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 28px 24px 0;
+  width: 100%;
 }
 
 .hero {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  border-radius: 36px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0 0 36px 36px;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   background:
-    radial-gradient(1100px 620px at 82% 22%, rgba(101, 157, 242, 0.22), transparent 58%),
+    radial-gradient(1100px 620px at 70% 22%, rgba(101, 157, 242, 0.22), transparent 58%),
     radial-gradient(700px 420px at 4% 100%, rgba(37, 99, 235, 0.16), transparent 65%),
     var(--night);
   box-shadow: 0 50px 120px -50px rgba(15, 23, 42, 0.6);
@@ -116,11 +115,17 @@ a:focus-visible {
 .nav {
   position: relative;
   z-index: 3;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav__inner {
   display: flex;
   align-items: center;
   gap: 24px;
-  padding: 20px 40px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 20px 24px;
 }
 
 .brand {
@@ -194,7 +199,10 @@ a:focus-visible {
   grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
   gap: 48px;
   align-items: center;
-  padding: 64px 40px 72px;
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 64px 24px 72px;
 }
 
 .hero-copy {
@@ -1097,8 +1105,8 @@ h2 em {
 }
 
 @media (max-width: 1080px) {
-  .nav {
-    padding: 18px 28px;
+  .nav__inner {
+    padding: 18px 24px;
   }
 
   .nav-links {
@@ -1107,7 +1115,7 @@ h2 em {
 
   .hero-grid {
     gap: 32px;
-    padding: 56px 32px 64px;
+    padding: 56px 24px 64px;
   }
 
   .feature-grid {
@@ -1130,7 +1138,7 @@ h2 em {
 
   .hero-grid {
     grid-template-columns: 1fr;
-    padding: 48px 28px 56px;
+    padding: 48px 24px 56px;
   }
 
   .hero-copy {
@@ -1183,17 +1191,13 @@ h2 em {
 }
 
 @media (max-width: 640px) {
-  .hero-shell {
-    padding: 12px 12px 0;
-  }
-
   .hero {
-    border-radius: 26px;
+    border-radius: 0 0 26px 26px;
   }
 
-  .nav {
+  .nav__inner {
     gap: 12px;
-    padding: 14px 18px;
+    padding: 14px 20px;
   }
 
   .brand img {
