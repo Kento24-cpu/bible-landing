@@ -1,7 +1,7 @@
 export const RELEASES_URL = 'https://github.com/Kento24-cpu/bible-app/releases/latest';
 export const FALLBACK_APK_URL =
   'https://expo.dev/artifacts/eas/wVV8RgnxoKxDoSpExVZe8mv8cUc7PoMnfwg4ZZ8R1Rw.apk';
-export const FALLBACK_VERSION = '1.0.1';
+export const FALLBACK_VERSION = '1.0.4';
 
 export type Release = {
   url: string;
