@@ -19,6 +19,11 @@
   box-sizing: border-box;
 }
 
+astro-island,
+astro-slot {
+  display: contents;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -209,6 +214,30 @@ a:focus-visible {
   max-width: 600px;
 }
 
+.hero-copy > * {
+  animation: hero-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-copy > .eyebrow {
+  animation-delay: 0.05s;
+}
+
+.hero-copy > h1 {
+  animation-delay: 0.12s;
+}
+
+.hero-copy > .lead {
+  animation-delay: 0.22s;
+}
+
+.hero-copy > .hero-actions {
+  animation-delay: 0.32s;
+}
+
+.hero-copy > .hero-meta {
+  animation-delay: 0.42s;
+}
+
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -328,6 +357,7 @@ a:focus-visible {
   align-items: center;
   justify-content: center;
   min-height: 600px;
+  animation: hero-visual-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
 }
 
 .hero-visual::before {
@@ -347,6 +377,7 @@ a:focus-visible {
   transform: translate(-50%, -50%);
   border: 1px solid rgba(101, 157, 242, 0.16);
   border-radius: 50%;
+  animation: orbit-glow 9s ease-in-out infinite;
 }
 
 .orbit--one {
@@ -358,6 +389,7 @@ a:focus-visible {
   width: 620px;
   height: 620px;
   border-color: rgba(101, 157, 242, 0.09);
+  animation-delay: -4.5s;
 }
 
 .phone {
@@ -370,6 +402,10 @@ a:focus-visible {
   border: 1px solid rgba(255, 255, 255, 0.16);
   background: linear-gradient(160deg, #23262e, #0b0c10 40%, #15171d);
   box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.7), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.hero-visual .phone {
+  animation: phone-float 7s ease-in-out infinite;
 }
 
 .phone__island {
@@ -616,6 +652,7 @@ a:focus-visible {
   box-shadow: 0 24px 48px -16px rgba(0, 0, 0, 0.7);
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
+  animation: card-float 5s ease-in-out infinite;
 }
 
 .float-card__icon {
@@ -715,11 +752,10 @@ h2 em {
   border: 1px solid var(--line);
   background: var(--surface);
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .feature:hover {
-  transform: translateY(-4px);
   border-color: #cfe0fa;
   box-shadow: 0 24px 48px -24px rgba(37, 99, 235, 0.25);
 }
@@ -1104,6 +1140,65 @@ h2 em {
   color: var(--muted);
 }
 
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes hero-visual-in {
+  from {
+    opacity: 0;
+    transform: translateY(32px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes phone-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes card-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes orbit-glow {
+  0%,
+  100% {
+    opacity: 0.75;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.03);
+  }
+}
+
 @media (max-width: 1080px) {
   .nav__inner {
     padding: 18px 24px;
@@ -1310,5 +1405,6 @@ h2 em {
   *::after {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

@@ -1,0 +1,32 @@
+---
+import Download from '../components/Download';
+import Features from '../components/Features';
+import Hero from '../components/Hero';
+import Reading from '../components/Reading';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Biblia — La Palabra, sin distracciones"
+  description="App gratuita para leer la Biblia Reina-Valera 1909 en Android. 66 libros, 1.189 capítulos y lectura sin conexión.">
+  <main id="contenido">
+    <Hero client:load />
+    <Features client:visible />
+    <Reading client:visible />
+    <Download client:visible />
+  </main>
+
+  <footer class="footer">
+    <div class="footer__brand">
+      <img src="/assets/icon.png" alt="" width="24" height="24" />
+      <span>Biblia</span>
+    </div>
+    <nav class="footer__links" aria-label="Enlaces del pie">
+      <a href="#funciones">Funciones</a>
+      <a href="#lectura">Lectura</a>
+      <a href="#descargar">Descargar</a>
+      <a href="https://github.com/Kento24-cpu/bible-app" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+    <p>© 2026 Biblia. Texto Reina-Valera 1909 en dominio público.</p>
+  </footer>
+</Layout>
