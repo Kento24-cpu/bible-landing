@@ -7,7 +7,7 @@ Guidance for AI agents working in this repository.
 Astro 7 + React 19 landing page for the Bible app (`../bible-app`). Static output, Spanish UI.
 
 - `src/pages/index.astro` — page composition and footer.
-- `src/components/` — React islands: hero, features, reading, download and phone mockups.
+- `src/components/` — React islands: hero, reading and download; static app facts; phone mockups.
 - `src/lib/release.ts` — resolves the latest GitHub Release APK, with the last EAS preview APK as fallback.
 - `src/styles/global.css` — design tokens, layout and motion styles.
 - `public/assets/` — app icon and favicon copied from `bible-app`.
