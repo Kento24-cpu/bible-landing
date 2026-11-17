@@ -15,6 +15,8 @@ npm run preview  # serve the built site
 
 The APK buttons resolve the latest GitHub Release from `Kento24-cpu/bible-app` at runtime. If no release exists yet, they fall back to the last EAS preview APK.
 
+The fallback is synced automatically: when `bible-app` publishes a release, its workflow sends a `repository_dispatch` here and `.github/workflows/sync-release.yml` updates `src/lib/release.ts`, checks the build and commits. That dispatch needs a `LANDING_SYNC_TOKEN` secret in `bible-app`.
+
 ## Structure
 
 - `src/pages/index.astro` — page composition.

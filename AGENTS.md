@@ -36,6 +36,7 @@ Astro 7 + React 19 landing page for the Bible app (`../bible-app`). Static outpu
 
 - The app's GitHub Actions release workflow runs on tags `v*`, builds the EAS `preview` APK and attaches `bible-app-<version>.apk` to a GitHub Release.
 - `src/lib/release.ts` reads the latest release from the GitHub API, picks its APK asset and falls back to `FALLBACK_APK_URL` while no release exists or if the API fails.
+- When the app publishes a release it dispatches `app-release` to this repo. `.github/workflows/sync-release.yml` runs `scripts/sync-release.mjs`, which verifies the new APK URL, rewrites `FALLBACK_APK_URL` and `FALLBACK_VERSION`, runs `npm run build` and commits. It needs a `LANDING_SYNC_TOKEN` secret in `bible-app`: a fine-grained PAT with `Actions: write` on this repo.
 - Do not hardcode the version in the page. `useLatestRelease` updates the labels from the release tag.
 - Verify a release APK link before shipping: `curl -sIL <url> | head` must end in HTTP 200 with `content-type: application/octet-stream`.
 
@@ -45,3 +46,4 @@ Astro 7 + React 19 landing page for the Bible app (`../bible-app`). Static outpu
 - The app name is `bible-app`; the visible brand on this page is "Biblia".
 - Phone screens are hand-built React/CSS mockups. Keep them in sync with `../bible-app/app` if the UI changes.
 - The GitHub API request runs in the browser. Keep the parsing defensive and the fallback working.
+- The fallback is synced by the app release workflow, not edited by hand. `scripts/sync-release.mjs` must fail on an unreachable APK.

@@ -1,0 +1,41 @@
+name: Sync app release
+
+on:
+  repository_dispatch:
+    types: [app-release]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-app-release
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - run: node scripts/sync-release.mjs "${{ github.event.client_payload.version }}" "${{ github.event.client_payload.apk_url }}"
+
+      - run: npm run build
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/lib/release.ts
+          if git diff --cached --quiet; then
+            echo "release.ts already current"
+            exit 0
+          fi
+          git commit -m "chore: sync fallback release v${{ github.event.client_payload.version }}"
+          git push
